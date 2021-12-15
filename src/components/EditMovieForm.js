@@ -16,13 +16,18 @@ const EditMovieForm = (props) => {
 		description: ''
 	});
 
-	const { id } = useParams();
+	const { id } = useParams(); //Next, we need to grab the id being passed into the component through the url. Use the useParams hook to get the id value.
 
 	useEffect(() => {
-		axios.get(`http://localhost:9000/api/movies/${id}`).then((res) => {
-			setMovie(res.data);
-		});
-	}, [id]);
+		axios
+			.get(`http://localhost:9000/api/movies/${id}`)
+			.then((res) => {
+				setMovie(res.data);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}, [id]); //We need to be able to load in the current movie's attributes into our local form state. When EditMovieForm mount, retrieve our current id's movie from the api and save the data returned to local state.
 
 	const handleChange = (e) => {
 		setMovie({
@@ -42,7 +47,7 @@ const EditMovieForm = (props) => {
 			.catch((err) => {
 				console.log(err);
 			});
-	};
+	}; // At this point, nothing happens when the edit form is submitted. Add in the api call needed to update the server with our updated movie data.
 
 	const { title, director, genre, metascore, description } = movie;
 
