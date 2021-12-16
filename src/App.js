@@ -26,7 +26,9 @@ const App = (props) => {
 			});
 	}, []);
 
-	const deleteMovie = (id) => {};
+	const deleteMovie = (id) => {
+		setMovies(movies.filter((item) => item.id !== id)); //this does our state updating for deleting a movie
+	};
 
 	const addToFavorites = (movie) => {};
 
