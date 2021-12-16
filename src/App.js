@@ -43,7 +43,10 @@ const App = (props) => {
 
 					<Switch>
 						<Route path='/movies/edit/:id'>
-							<EditMovieForm setMovies={setMovies} /> {/* First, we need to be able to navigate to the edit movie component. In App.js, add in the <EditMovieForm> component to the supplied edit route.*/}
+							<EditMovieForm //First, we need to be able to navigate to the edit movie component. In App.js, add in the <EditMovieForm> component to the supplied edit route.
+								setMovies={setMovies}
+							/>
+							{/*  Now that we have access to setMovies, made sure the updated list of movies is saved to our global state*/}
 						</Route>
 
 						<Route path='/movies/:id'>

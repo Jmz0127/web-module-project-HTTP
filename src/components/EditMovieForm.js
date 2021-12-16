@@ -42,7 +42,7 @@ const EditMovieForm = (props) => {
 			.put(`http://localhost:9000/api/movies/${id}`, movie)
 			.then((res) => {
 				setMovies(res.data);
-				push(`/movies/${movie.id}`);
+				push(`/movies/${id}`); //Redirect the user to the currently edited movie's individual info page.
 			})
 			.catch((err) => {
 				console.log(err);
