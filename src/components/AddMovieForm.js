@@ -25,16 +25,17 @@ const AddMovieForm = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// axios
-		// 	.put(`http://localhost:9000/api/movies/${id}`, movie)
-		// 	.then((res) => {
-		// 		setMovies(res.data);
-		// 		push(`/movies/${id}`); //Redirect the user to the currently edited movie's individual info page.
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
-	}; // At this point, nothing happens when the edit form is submitted. Add in the api call needed to update the server with our updated movie data.
+
+		axios
+			.post(`http://localhost:9000/api/movies`, movie)
+			.then((res) => {
+				setMovies(res.data);
+				push(`/movies`); //Redirect the user to the list after adding a movie.
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	const { title, director, genre, metascore, description } = movie;
 

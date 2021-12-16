@@ -52,7 +52,7 @@ const App = (props) => {
 							{/*  Now that we have access to setMovies, made sure the updated list of movies is saved to our global state*/}
 						</Route>
 						<Route path='/movies/add'>
-							<AddMovieForm />
+							<AddMovieForm setMovies={setMovies} />
 							{/* //Add in a route that allows access to AddMovieForm.
 							 */}
 						</Route>
