@@ -10,6 +10,7 @@ import FavoriteMovieList from './components/FavoriteMovieList';
 
 import axios from 'axios';
 import EditMovieForm from './components/EditMovieForm';
+import AddMovieForm from './components/AddMovieForm'; //Add in a route that allows access to AddMovieForm.
 
 const App = (props) => {
 	const [movies, setMovies] = useState([]);
@@ -49,6 +50,11 @@ const App = (props) => {
 								setMovies={setMovies}
 							/>
 							{/*  Now that we have access to setMovies, made sure the updated list of movies is saved to our global state*/}
+						</Route>
+						<Route path='/movies/add'>
+							<AddMovieForm />
+							{/* //Add in a route that allows access to AddMovieForm.
+							 */}
 						</Route>
 
 						<Route path='/movies/:id'>

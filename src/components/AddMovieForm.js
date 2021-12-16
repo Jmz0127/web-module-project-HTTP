@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-const EditMovieForm = (props) => {
+// Use EditMovieForm.js as a model to build an AddMovieForm component from scratch. The component should hold all the attributes of a new movie in local state.
+const AddMovieForm = (props) => {
 	const { push } = useHistory();
 
 	const { setMovies } = props;
@@ -16,19 +16,6 @@ const EditMovieForm = (props) => {
 		description: ''
 	});
 
-	const { id } = useParams(); //Next, we need to grab the id being passed into the component through the url. Use the useParams hook to get the id value.
-
-	useEffect(() => {
-		axios
-			.get(`http://localhost:9000/api/movies/${id}`)
-			.then((res) => {
-				setMovie(res.data);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-	}, [id]); //We need to be able to load in the current movie's attributes into our local form state. When EditMovieForm mount, retrieve our current id's movie from the api and save the data returned to local state.
-
 	const handleChange = (e) => {
 		setMovie({
 			...movie,
@@ -38,15 +25,15 @@ const EditMovieForm = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		axios
-			.put(`http://localhost:9000/api/movies/${id}`, movie)
-			.then((res) => {
-				setMovies(res.data);
-				push(`/movies/${id}`); //Redirect the user to the currently edited movie's individual info page.
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		// axios
+		// 	.put(`http://localhost:9000/api/movies/${id}`, movie)
+		// 	.then((res) => {
+		// 		setMovies(res.data);
+		// 		push(`/movies/${id}`); //Redirect the user to the currently edited movie's individual info page.
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
 	}; // At this point, nothing happens when the edit form is submitted. Add in the api call needed to update the server with our updated movie data.
 
 	const { title, director, genre, metascore, description } = movie;
@@ -57,7 +44,7 @@ const EditMovieForm = (props) => {
 				<form onSubmit={handleSubmit}>
 					<div className='modal-header'>
 						<h4 className='modal-title'>
-							Editing <strong>{movie.title}</strong>
+							Adding <strong>{movie.title}</strong>
 						</h4>
 					</div>
 					<div className='modal-body'>
@@ -94,4 +81,4 @@ const EditMovieForm = (props) => {
 	);
 };
 
-export default EditMovieForm;
+export default AddMovieForm;
